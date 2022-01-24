@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  dotnetangular.api:
+    image: ${DOCKER_REGISTRY-}dotnetangularapi
+    build:
+      context: .
+      dockerfile: src/DotNetAngular.Api/Dockerfile
+    container_name: dotnetangular.api
+    ports:
+      - "8080:80"
+    depends_on:
+      - dotnetangular.db
+    networks:
+      - dotnetangular.net
+  dotnetangular.db:
+    image: "postgres:latest"
+    container_name: dotnetangular.db
+    ports:
+      - "54322:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=#d0tn3t#
+      - POSTGRES_DB=dotnetangular
+    volumes:
+      - .docker/dbdata:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - dotnetangular.net
+networks:
+  dotnetangular.net:
+      driver: bridge

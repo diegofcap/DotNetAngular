@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotNetAngular.Core\DotNetAngular.Core.csproj" />
+    <ProjectReference Include="..\DotNetAngular.Data\DotNetAngular.Data.csproj" />
+  </ItemGroup>
+
+</Project>
