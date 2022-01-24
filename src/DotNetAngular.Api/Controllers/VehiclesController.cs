@@ -11,7 +11,7 @@ using DotNetAngular.Data.Context;
 
 namespace DotNetAngular.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class VehiclesController : ControllerBase
     {

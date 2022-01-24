@@ -26,9 +26,9 @@ namespace DotNetAngular.Api.Controllers
         #region Methods
         // GET: api/VehicleTypes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<VehicleType>>> GetVehicleType(string name)
+        public async Task<ActionResult<IEnumerable<VehicleType>>> GetVehicleType()
         {
-            return Ok(await _vehicleTypeService.GetAllAsync(name));
+            return Ok(await _vehicleTypeService.GetAllAsync());
         }
 
         // GET: api/VehicleTypes/5

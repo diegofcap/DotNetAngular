@@ -16,6 +16,7 @@ namespace DotNetAngular.Core.Domain.Vehicles
         public string Name { get; set; }
         public int NumberOfPassengers { get; set; }
 
+        [System.Text.Json.Serialization.JsonIgnore]
         public ICollection<Vehicle> Vehicles { get; set; }
     }
 }

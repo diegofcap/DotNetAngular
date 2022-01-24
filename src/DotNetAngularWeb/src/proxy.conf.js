@@ -1,7 +1,6 @@
 const PROXY_CONFIG = [{
     context: [
-        "/vehicles",
-        "/vehicletypes",
+        "/vehicletypes"
     ],
     target: "http://localhost:8080",
     secure: false

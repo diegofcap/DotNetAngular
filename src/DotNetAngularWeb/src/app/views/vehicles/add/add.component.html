@@ -8,30 +8,30 @@
                 <form #customStylesForm="ngForm" (ngSubmit)="onSubmit1()" [gutter]="3" [validated]="customStylesValidated" novalidate cForm cRow class="needs-validation">
                     <c-col [md]="6">
                         <label cLabel for="chassisseries">Chassis Series</label>
-                        <input cFormControl id="chassisseries" required type="text" />
+                        <input cFormControl id="chassisseries" required type="text" [(ngModel)]="chassisseries" [ngModelOptions]="{standalone: true}" />
                         <c-form-feedback [valid]="false">This field is required</c-form-feedback>
                     </c-col>
                     <c-col [md]="6">
                         <label cLabel for="chassisnumber">Chassis Number</label>
-                        <input cFormControl id="chassisnumber" required type="text" />
+                        <input cFormControl id="chassisnumber" required type="text" [(ngModel)]="chassisnumber" [ngModelOptions]="{standalone: true}" />
                         <c-form-feedback [valid]="false">This field is required</c-form-feedback>
                     </c-col>
                     <c-col [md]="4">
                         <label cLabel for="vehicletype">Type</label>
-                        <select cSelect id="vehicletype" required>
+                        <select cSelect id="vehicletype" required (change)="onChange($event)">
                           <option value="">Choose...</option>
-                          <option>...</option>
+                          <option *ngFor="let forecast of forecasts" value='{{forecast.id}}'>{{ forecast.name }}</option>
                         </select>
-                        <c-form-feedback [valid]="false">Please chise a vehicle type.</c-form-feedback>
+                        <c-form-feedback [valid]="false">Please chose a vehicle type.</c-form-feedback>
                     </c-col>
                     <c-col [md]="4">
                         <label cLabel for="vehiclepassengers">Number of Passengers</label>
-                        <input cFormControl id="vehiclepassengers" required type="text" />
+                        <input cFormControl id="vehiclepassengers" required type="text" [(ngModel)]="passengersNumber" readonly [ngModelOptions]="{standalone: true}" />
                         <c-form-feedback [valid]="false">This field is required</c-form-feedback>
                     </c-col>
                     <c-col [md]="4">
                         <label cLabel for="vehiclecolor">Color</label>
-                        <input cFormControl id="vehiclecolor" required type="text" />
+                        <input cFormControl id="vehiclecolor" required type="text" [(ngModel)]="color" [ngModelOptions]="{standalone: true}" />
                         <c-form-feedback [valid]="false">This field is required</c-form-feedback>
                     </c-col>
                     <c-col [xs]="12">

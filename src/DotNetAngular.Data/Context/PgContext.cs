@@ -18,7 +18,7 @@ namespace DotNetAngular.Data.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder
-                .UseNpgsql("Host=localhost;Port=54322;Database=dotnetangular;Username=postgres;Password=#d0tn3t#", b=> b.MigrationsAssembly("DotNetAngular.Data"))
+                .UseNpgsql("Host=dotnetangular.db;Port=5432;Database=dotnetangular;Username=postgres;Password=#d0tn3t#", b=> b.MigrationsAssembly("DotNetAngular.Data"))
                 .UseLowerCaseNamingConvention();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

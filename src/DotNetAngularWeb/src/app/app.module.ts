@@ -46,6 +46,8 @@ import {
 } from '@coreui/angular';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
+import { VehicletypeService } from './services/vehicletype.service';
+import { VehicleService } from './services/vehicle.service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -98,7 +100,9 @@ const APP_CONTAINERS = [
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
     },
     IconSetService,
-    Title
+    Title,
+    VehicletypeService,
+    VehicleService
   ],
   bootstrap: [AppComponent]
 })
