@@ -1,0 +1,46 @@
+<c-row>
+    <c-col xs="12">
+        <c-card class="mb-4">
+            <c-card-header ngPreserveWhitespaces>
+                <strong>Add new vehicle</strong>
+            </c-card-header>
+            <c-card-body>
+                <form #customStylesForm="ngForm" (ngSubmit)="onSubmit1()" [gutter]="3" [validated]="customStylesValidated" novalidate cForm cRow class="needs-validation">
+                    <c-col [md]="6">
+                        <label cLabel for="chassisseries">Chassis Series</label>
+                        <input cFormControl id="chassisseries" required type="text" />
+                        <c-form-feedback [valid]="false">This field is required</c-form-feedback>
+                    </c-col>
+                    <c-col [md]="6">
+                        <label cLabel for="chassisnumber">Chassis Number</label>
+                        <input cFormControl id="chassisnumber" required type="text" />
+                        <c-form-feedback [valid]="false">This field is required</c-form-feedback>
+                    </c-col>
+                    <c-col [md]="4">
+                        <label cLabel for="vehicletype">Type</label>
+                        <select cSelect id="vehicletype" required>
+                          <option value="">Choose...</option>
+                          <option>...</option>
+                        </select>
+                        <c-form-feedback [valid]="false">Please chise a vehicle type.</c-form-feedback>
+                    </c-col>
+                    <c-col [md]="4">
+                        <label cLabel for="vehiclepassengers">Number of Passengers</label>
+                        <input cFormControl id="vehiclepassengers" required type="text" />
+                        <c-form-feedback [valid]="false">This field is required</c-form-feedback>
+                    </c-col>
+                    <c-col [md]="4">
+                        <label cLabel for="vehiclecolor">Color</label>
+                        <input cFormControl id="vehiclecolor" required type="text" />
+                        <c-form-feedback [valid]="false">This field is required</c-form-feedback>
+                    </c-col>
+                    <c-col [xs]="12">
+                        <button cButton class="me-1" color="primary" type="submit">
+                          Save
+                        </button>
+                    </c-col>
+                </form>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>

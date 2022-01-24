@@ -1,26 +1,33 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+
+import { IconSetService } from '@coreui/icons-angular';
+import { iconSubset } from './icons/icon-subset';
+import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  // tslint:disable-next-line:component-selector
+  selector: 'body',
+  template: '<router-outlet></router-outlet>',
 })
-export class AppComponent {
-  public forecasts?: WeatherForecast[];
+export class AppComponent implements OnInit {
+  title = 'Fleet Manager - .NET 6 + Angular Example';
 
-  constructor(http: HttpClient) {
-    http.get<WeatherForecast[]>('/weatherforecast').subscribe(result => {
-      this.forecasts = result;
-    }, error => console.error(error));
+  constructor(
+    private router: Router,
+    private titleService: Title,
+    private iconSetService: IconSetService
+  ) {
+    titleService.setTitle(this.title);
+    // iconSet singleton
+    iconSetService.icons = { ...iconSubset };
   }
 
-  title = 'DotNetAngularWeb';
-}
-
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
+  ngOnInit(): void {
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+    });
+  }
 }

@@ -1,11 +1,10 @@
-const PROXY_CONFIG = [
-  {
+const PROXY_CONFIG = [{
     context: [
-      "/weatherforecast",
+        "/vehicles",
+        "/vehicletypes",
     ],
     target: "http://localhost:8080",
     secure: false
-  }
-]
+}]
 
 module.exports = PROXY_CONFIG;
