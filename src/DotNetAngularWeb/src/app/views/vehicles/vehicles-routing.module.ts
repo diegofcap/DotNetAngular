@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AddComponent } from './add/add.component';
-import { ListComponent } from './list/list/list.component';
+import { DeleteComponent } from './delete/delete.component';
+import { EditComponent } from './edit/edit.component';
+import { FindComponent } from './find/find.component';
+import { ListComponent } from './list/list.component';
 
 const routes: Routes = [
   {
@@ -20,6 +23,27 @@ const routes: Routes = [
         component: AddComponent,
         data: {
           title: 'Add new Vehicle'
+        }
+      },
+      {
+        path: 'edit',
+        component: EditComponent,
+        data: {
+          title: 'Edit a Vehicle'
+        }
+      },
+      {
+        path: 'delete',
+        component: DeleteComponent,
+        data: {
+          title: 'Delete a Vehicle'
+        }
+      },
+      {
+        path: 'find',
+        component: FindComponent,
+        data: {
+          title: 'Delete a Vehicle'
         }
       },
       {

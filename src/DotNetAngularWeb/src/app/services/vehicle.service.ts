@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { IChassis } from '../models/IChassis';
 import { IVehicle } from '../models/IVehicle';
 
 @Injectable({
@@ -20,7 +21,11 @@ export class VehicleService {
     return this.http.get<IVehicle> (this.apiUrl + "/" + id);
   }
 
-  postVehicle(vehicleType: IVehicle) : Observable<IVehicle>{
-    return this.http.post<IVehicle> (this.apiUrl, vehicleType);
+  GetVehicleByChassis(chassis: IChassis) : Observable<IVehicle>{
+    return this.http.post<IVehicle> (this.apiUrl + "/GetVehicleByChassis", chassis);
+  }
+
+  postVehicle(vehicle: IVehicle) : Observable<IVehicle>{
+    return this.http.post<IVehicle> (this.apiUrl, vehicle);
   }
 }

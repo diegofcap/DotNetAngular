@@ -18,12 +18,18 @@ import { ComponentsModule } from '../../../components/components.module';
 
 import { VehiclesRoutingModule } from './vehicles-routing.module';
 import { AddComponent } from './add/add.component';
-import { ListComponent } from './list/list/list.component';
+import { ListComponent } from './list/list.component';
+import { EditComponent } from './edit/edit.component';
+import { DeleteComponent } from './delete/delete.component';
+import { FindComponent } from './find/find.component';
 
 @NgModule({
   declarations: [
     AddComponent,
-    ListComponent
+    ListComponent,
+    EditComponent,
+    DeleteComponent,
+    FindComponent
   ],
   imports: [
     CommonModule,

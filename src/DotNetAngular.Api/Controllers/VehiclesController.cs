@@ -44,6 +44,20 @@ namespace DotNetAngular.Api.Controllers
             return vehicleType;
         }
 
+        [HttpPost]
+        [Route("GetVehicleByChassis")]
+        public async Task<ActionResult<Vehicle>> GetVehicleByChassis(Chassis model)
+        {
+            try
+            {
+                return Ok((await _vehicleService.GetAllAsync(chassis: model)).FirstOrDefault());
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         // PUT: api/Vehicles/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
