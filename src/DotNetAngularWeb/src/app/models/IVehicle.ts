@@ -7,6 +7,7 @@ export interface IVehicle {
     createAt: Date | null,
     updateAt: Date | null,
     chassisId: number | null;
+    chassis: IChassis | null;
     vehicleTypeId: number | null;
     numberPassengers: number | null;
     vehicleType: IVehicleType | null;

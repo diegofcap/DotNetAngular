@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DotNetAngular.Core.Domain.Vehicles;
 using DotNetAngular.Data.Context;
+using DotNetAngular.Services.Vehicles;
 
 namespace DotNetAngular.Api.Controllers
 {
@@ -15,32 +16,32 @@ namespace DotNetAngular.Api.Controllers
     [ApiController]
     public class VehiclesController : ControllerBase
     {
-        private readonly PgContext _context;
+        private readonly IVehicleService _vehicleService;
 
-        public VehiclesController(PgContext context)
+        public VehiclesController(IVehicleService vehicleService)
         {
-            _context = context;
+            _vehicleService = vehicleService;
         }
 
         // GET: api/Vehicles
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Vehicle>>> GetVehicles()
         {
-            return await _context.Vehicles.ToListAsync();
+            return Ok(await _vehicleService.GetAllAsync());
         }
 
         // GET: api/Vehicles/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Vehicle>> GetVehicle(int id)
         {
-            var vehicle = await _context.Vehicles.FindAsync(id);
+            var vehicleType = await _vehicleService.GetByIdAsync(id);
 
-            if (vehicle == null)
+            if (vehicleType == null)
             {
                 return NotFound();
             }
 
-            return vehicle;
+            return vehicleType;
         }
 
         // PUT: api/Vehicles/5
@@ -53,11 +54,9 @@ namespace DotNetAngular.Api.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(vehicle).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                await _vehicleService.UpdateAsync(vehicle);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -79,8 +78,7 @@ namespace DotNetAngular.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<Vehicle>> PostVehicle(Vehicle vehicle)
         {
-            _context.Vehicles.Add(vehicle);
-            await _context.SaveChangesAsync();
+            await _vehicleService.InsertAsync(vehicle);
 
             return CreatedAtAction("GetVehicle", new { id = vehicle.Id }, vehicle);
         }
@@ -89,21 +87,20 @@ namespace DotNetAngular.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVehicle(int id)
         {
-            var vehicle = await _context.Vehicles.FindAsync(id);
+            var vehicle = await _vehicleService.GetByIdAsync(id);
             if (vehicle == null)
             {
                 return NotFound();
             }
 
-            _context.Vehicles.Remove(vehicle);
-            await _context.SaveChangesAsync();
+            await _vehicleService.DeleteAsync(vehicle);
 
             return NoContent();
         }
 
         private bool VehicleExists(int id)
         {
-            return _context.Vehicles.Any(e => e.Id == id);
+            return _vehicleService.GetByIdAsync(id) != null;
         }
     }
 }

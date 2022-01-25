@@ -34,6 +34,8 @@ using (var scope = app.Services.CreateScope())
     try
     {
         var context = services.GetRequiredService<PgContext>();
+        context.ChangeTracker.LazyLoadingEnabled = false;
+
         DbInitializer.Initialize(context);
     }
     catch (Exception ex)

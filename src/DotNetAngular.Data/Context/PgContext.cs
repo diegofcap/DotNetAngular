@@ -13,7 +13,7 @@ namespace DotNetAngular.Data.Context
 
         public PgContext(DbContextOptions<PgContext> options) : base(options)
         {
-
+            this.ChangeTracker.LazyLoadingEnabled = false;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

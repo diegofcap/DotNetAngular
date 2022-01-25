@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DotNetAngular.Core.Domain.Vehicles;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotNetAngular.Services.Vehicles
 {
@@ -35,6 +36,8 @@ namespace DotNetAngular.Services.Vehicles
         {
             return await _vehicleRepository.GetAllAsync(async query =>
             {
+                query = query.Include(x => x.Chassis).Include(x => x.VehicleType);
+
                 if (vehicleTypeId.HasValue)
                     query = query.Where(v => v.VehicleTypeId == vehicleTypeId);
 

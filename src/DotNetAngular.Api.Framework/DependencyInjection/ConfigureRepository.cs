@@ -12,7 +12,7 @@ namespace DotNetAngular.Api.Framework.DependencyInjection
         {
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddDbContext<PgContext>(
-                options => options.UseNpgsql(configuration.GetConnectionString("Default"))
+                options => options.UseNpgsql(configuration.GetConnectionString("Default")).UseLowerCaseNamingConvention()
             );
         }
     }

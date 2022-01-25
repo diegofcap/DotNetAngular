@@ -10,6 +10,7 @@ import {
   FormModule,
   GridModule,
   ListGroupModule,
+  TableModule,
   SharedModule
 } from '@coreui/angular';
 
@@ -17,10 +18,12 @@ import { ComponentsModule } from '../../../components/components.module';
 
 import { VehiclesRoutingModule } from './vehicles-routing.module';
 import { AddComponent } from './add/add.component';
+import { ListComponent } from './list/list/list.component';
 
 @NgModule({
   declarations: [
-    AddComponent
+    AddComponent,
+    ListComponent
   ],
   imports: [
     CommonModule,
@@ -37,6 +40,7 @@ import { AddComponent } from './add/add.component';
     ButtonGroupModule,
     DropdownModule,
     SharedModule,
+    TableModule,
     ListGroupModule
   ]
 })

@@ -1,0 +1,33 @@
+<c-row ngPreserveWhitespace>
+    <c-col xs="12">
+        <c-card class="mb-4">
+            <c-card-header>
+                <strong>Vehicles</strong>
+            </c-card-header>
+            <c-card-body>
+                <table [striped]="true" cTable color="dark" *ngIf="forecasts">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Chassis Series</th>
+                            <th scope="col">Chassis Number</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Passengers</th>
+                            <th scope="col">Color</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let forecast of forecasts">
+                            <th scope="row">{{ forecast.id }}</th>
+                            <td>{{ forecast.chassis?.series }}</td>
+                            <td>{{ forecast.chassis?.number }}</td>
+                            <td>{{ forecast.vehicleType?.name }}</td>
+                            <td>{{ forecast.numberPassengers }}</td>
+                            <td>{{ forecast.color }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>

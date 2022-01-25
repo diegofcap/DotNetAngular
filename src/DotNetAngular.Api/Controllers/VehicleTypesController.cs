@@ -35,14 +35,14 @@ namespace DotNetAngular.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<VehicleType>> GetVehicleType(int id)
         {
-            var paymentMethod = await _vehicleTypeService.GetByIdAsync(id);
+            var vehicleType = await _vehicleTypeService.GetByIdAsync(id);
 
-            if (paymentMethod == null)
+            if (vehicleType == null)
             {
                 return NotFound();
             }
 
-            return paymentMethod;
+            return vehicleType;
         }
 
         // PUT: api/VehicleTypes/5
