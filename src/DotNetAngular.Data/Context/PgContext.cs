@@ -2,6 +2,7 @@
 using DotNetAngular.Data.Mapping.Vehicles;
 using Microsoft.EntityFrameworkCore;
 using EFCore.NamingConventions;
+using Microsoft.Extensions.Configuration;
 
 namespace DotNetAngular.Data.Context
 {
@@ -17,9 +18,15 @@ namespace DotNetAngular.Data.Context
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder
-                .UseNpgsql("Host=dotnetangular.db;Port=5432;Database=dotnetangular;Username=postgres;Password=#d0tn3t#", b=> b.MigrationsAssembly("DotNetAngular.Data"))
+        {
+            IConfiguration configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            optionsBuilder
+                .UseNpgsql(configuration.GetConnectionString("Default"), b => b.MigrationsAssembly("DotNetAngular.Data"))
                 .UseLowerCaseNamingConvention();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

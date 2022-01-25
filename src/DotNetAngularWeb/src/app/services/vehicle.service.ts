@@ -9,7 +9,6 @@ import { IVehicle } from '../models/IVehicle';
   providedIn: 'root'
 })
 export class VehicleService {
-
   private apiUrl = environment.apiUrl + '/vehicles';
   constructor(private http: HttpClient) { }
 
@@ -27,5 +26,13 @@ export class VehicleService {
 
   postVehicle(vehicle: IVehicle) : Observable<IVehicle>{
     return this.http.post<IVehicle> (this.apiUrl, vehicle);
+  }
+
+  putVehicle(vehicle: IVehicle) : Observable<IVehicle>{
+    return this.http.put<IVehicle> (this.apiUrl + "/" + vehicle.id, vehicle);
+  }
+
+  deleteVehicle(id: number | null) {
+    return this.http.delete<IVehicle> (this.apiUrl + "/" + id);
   }
 }

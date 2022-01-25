@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListComponent } from './list.component';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { FormsModule } from '@angular/forms';
 
 describe('ListComponent', () => {
   let component: ListComponent;
@@ -8,9 +10,10 @@ describe('ListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListComponent ]
+      imports: [HttpClientTestingModule, FormsModule],
+      declarations: [ListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

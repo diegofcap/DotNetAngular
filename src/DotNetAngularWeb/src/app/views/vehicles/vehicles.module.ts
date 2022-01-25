@@ -11,7 +11,8 @@ import {
   GridModule,
   ListGroupModule,
   TableModule,
-  SharedModule
+  SharedModule,
+  ModalModule
 } from '@coreui/angular';
 
 import { ComponentsModule } from '../../../components/components.module';
@@ -47,7 +48,8 @@ import { FindComponent } from './find/find.component';
     DropdownModule,
     SharedModule,
     TableModule,
-    ListGroupModule
+    ListGroupModule,
+    ModalModule
   ]
 })
 export class VehiclesModule {

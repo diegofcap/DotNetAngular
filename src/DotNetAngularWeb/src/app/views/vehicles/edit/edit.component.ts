@@ -63,18 +63,12 @@ export class EditComponent implements OnInit {
   onSubmit() {
     if(this.chassisnumber != 0 && this.chassisseries != "")
     {
-      let vehicle = {
-        color: this.color,
-        chassisId: this.chassisnumber,
-        vehicleTypeId: this.vehicleTypeId,
-        numberPassengers: this.passengersNumber,
-        chassis: {
-          series: this.chassisseries,
-          number: this.chassisnumber,
-        }
+      if(this.vehicle != null)
+      {
+        this.vehicle.color = this.color;
       }
       
-      this.vehicleService.postVehicle(vehicle as unknown as IVehicle).subscribe(result => {
+      this.vehicleService.putVehicle(this.vehicle as IVehicle).subscribe(result => {
         window.location.href = "#/vehicles/list";
       }, error => console.error(error));
     }

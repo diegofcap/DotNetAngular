@@ -2,7 +2,8 @@
     <c-col xs="12">
         <c-card class="mb-4">
             <c-card-header ngPreserveWhitespaces>
-                <strong>Add new vehicle</strong>
+                <strong>Edit a vehicle</strong>
+                <small>Please fill the Chassis Series and Number</small>
             </c-card-header>
             <c-card-body>
                 <form #customStylesForm="ngForm" (ngSubmit)="onSearch()" [gutter]="3" [validated]="customStylesSearchValidated" novalidate cForm cRow class="needs-validation" *ngIf="vehicleId == 0">

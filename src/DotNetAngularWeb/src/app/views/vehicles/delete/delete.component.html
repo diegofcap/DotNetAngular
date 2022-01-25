@@ -1,1 +1,77 @@
-<p>delete works!</p>
+<c-row>
+    <c-col xs="12">
+        <c-card class="mb-4">
+            <c-card-header ngPreserveWhitespaces>
+                <strong>Delete a vehicle</strong>
+                <small>Please fill the Chassis Series and Number</small>
+            </c-card-header>
+            <c-card-body>
+                <form #customStylesForm="ngForm" (ngSubmit)="onSearch()" [gutter]="3" [validated]="customStylesSearchValidated" novalidate cForm cRow class="needs-validation">
+                    <c-col [md]="6">
+                        <label cLabel for="chassisseries">Chassis Series</label>
+                        <input cFormControl id="chassisseries" required type="text" [(ngModel)]="chassisseries" [ngModelOptions]="{standalone: true}" />
+                        <c-form-feedback [valid]="false">This field is required</c-form-feedback>
+                    </c-col>
+                    <c-col [md]="6">
+                        <label cLabel for="chassisnumber">Chassis Number</label>
+                        <input cFormControl id="chassisnumber" required type="text" [(ngModel)]="chassisnumber" [ngModelOptions]="{standalone: true}" />
+                        <c-form-feedback [valid]="false">This field is required</c-form-feedback>
+                    </c-col>
+                    <c-col [xs]="12">
+                        <button cButton class="me-1" color="primary" type="submit">
+                          Search...
+                        </button>
+                    </c-col>
+                </form>
+            </c-card-body>
+        </c-card>
+    </c-col>
+
+    <c-col xs="12" *ngIf="vehicleId > 0">
+        <c-card class="mb-4">
+            <c-card-header ngPreserveWhitespaces>
+                <strong>Vehicle Details</strong>
+            </c-card-header>
+            <c-card-body>
+                <form #customStylesForm="ngForm" [gutter]="3" cForm cRow class="needs-validation">
+                    <c-col [md]="4">
+                        <label cLabel for="chassisseries" style="font-weight: bold;">Chassis Series</label> {{ vehicle?.chassis?.series }}
+                    </c-col>
+                    <c-col [md]="4">
+                        <label cLabel for="chassisseries" style="font-weight: bold;">Chassis Number</label> {{ vehicle?.chassis?.number }}
+                    </c-col>
+                    <c-col [md]="4">
+                    </c-col>
+                    <c-col [md]="4">
+                        <label cLabel for="vehicletype" style="font-weight: bold;">Type</label> {{ vehicle?.vehicleType?.name }}
+                    </c-col>
+                    <c-col [md]="4">
+                        <label cLabel for="vehiclepassengers" style="font-weight: bold;">Number of Passengers</label> {{ vehicle?.numberPassengers }}
+                    </c-col>
+                    <c-col [md]="4">
+                        <label cLabel for="vehiclecolor" style="font-weight: bold;">Color</label> {{ vehicle?.numberPassengers }}
+                    </c-col>
+                    <c-col [xs]="12">
+                        <button cButton class="me-1" color="danger" type="button" (click)="toggleConfirm()">
+                          Delete
+                        </button>
+                    </c-col>
+                </form>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>
+
+<c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleConfirmChange($event)">
+    <c-modal-header alignment="center">
+        <h5 cModalTitle>Confirm Delete</h5>
+        <button (click)="toggleConfirm()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>The vehicle will be removed. Are you sure?</c-modal-body>
+    <c-modal-footer>
+        <button (click)="toggleConfirm()" cButton color="secondary">
+        Close
+      </button>
+        <button cButton color="danger" (click)="confirmDelete()">Confirm</button>
+    </c-modal-footer>
+</c-modal>

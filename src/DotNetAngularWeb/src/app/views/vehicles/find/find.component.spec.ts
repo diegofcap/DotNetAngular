@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FindComponent } from './find.component';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { FormsModule } from '@angular/forms';
 
 describe('FindComponent', () => {
   let component: FindComponent;
@@ -8,9 +10,10 @@ describe('FindComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FindComponent ]
+      imports: [HttpClientTestingModule, FormsModule],
+      declarations: [FindComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
